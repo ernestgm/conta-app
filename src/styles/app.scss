@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/bootstrap";
+@import "spinner";
+@import "utils";
+@import "rtl";
+@import "responsive";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.flex-5{
+  flex: 0 0 10% !important;
+}
+.flex-15{
+  flex: 0 0 15% !important;
+}
+.flex-55{
+  flex: 0 0 55% !important;
+}

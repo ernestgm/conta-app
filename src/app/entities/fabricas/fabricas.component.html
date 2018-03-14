@@ -1,0 +1,78 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Fabricas'" [icon]="'fa-building'"></app-page-header>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-inline" [formGroup]="formGroup" (ngSubmit)="saveFabrica(formGroup.value)">
+                <label class="sr-only" for="nombre">Nombre</label>
+                <input placeholder="Nombre"  type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="nombre" name="nombre" formControlName="nombre"/>
+
+                <input type="hidden" name="id" formControlName="id">
+
+                <label class="sr-only" for="salario_adicional">Salario Adicional</label>
+                <input placeholder="Salario Adicional" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="salario_adicional" name="salario_adicional" formControlName="salario_adicional"/>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
+                <button *ngIf="editMode" (click)="cancelarEdicion()" type="button" class="btn btn-secundary">Cancelar Edicion</button>
+            </form>
+        </div>
+        <div class="col-sm-12">
+            <div class="example-header">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+
+            <div class="example-container mat-elevation-z8">
+
+                <mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                        <mat-cell [ngClass]="'flex-15'"  *matCellDef="let row"> {{row.id}}</mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="nombre">
+                        <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> Nombre</mat-header-cell>
+                        <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.nombre}}</mat-cell>
+                    </ng-container>
+
+                    <!-- Color Column -->
+                    <ng-container matColumnDef="salario_adicional">
+                        <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> Salario Adicional</mat-header-cell>
+                        <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.salario_adicional}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell [ngClass]="'flex-55'" *matHeaderCellDef mat-sort-header></mat-header-cell>
+                        <mat-cell [ngClass]="'flex-55'" *matCellDef="let row">
+                            <a href="" class="btn btn-xs btn-info"><i class="fa fa-money"></i> Listar Nominas</a> &nbsp;
+
+                            <a [routerLink]="['/trabajadores/fabrica', row.id]" class="btn btn-xs btn-success"><i class="fa fa-users"></i> Lista Trabajadores</a>
+                            &nbsp; &nbsp;
+
+                            <div class="btn-group">
+                                <button (click)="editarFabrica(row.id)" class="btn btn-xs btn-primary"
+                                        data-toggle="modal" data-target="#addElement"><i class="fa fa-edit"></i> Editar
+                                </button>
+                                <button (click)="deleteFabrica(row.id)" class="btn btn-xs btn-danger btn-remove"
+                                        type="button"><i class="fa fa-trash"></i> Eliminar
+                                </button>
+                            </div>
+
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
