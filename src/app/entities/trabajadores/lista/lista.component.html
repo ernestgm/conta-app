@@ -1,3 +1,123 @@
-<p>
-  lista works!
-</p>
+<h3 class="pull-left" *ngIf="fabrica !== undefined">Fabrica: {{ fabrica.nombre }}</h3>
+<a [routerLink]="['/trabajadores/asistencia', fabrica_id]" *ngIf="fabrica !== undefined" type="submit" class="btn btn-info pull-right">Registrar Asistencia</a>&nbsp;
+<hr class="mt-4">
+<div class="row">
+    <div class="col-sm-12">
+        <form class="form-inline jumbotron p-2" [formGroup]="formGroup" (ngSubmit)="saveTrabajador(formGroup.value)">
+            <label class="sr-only" for="first_name">Nombre</label>
+            <input placeholder="Nombre" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="first_name"
+                   name="first_name" formControlName="first_name"/>
+
+            <label class="sr-only" for="last_name">Apellidos</label>
+            <input placeholder="Apellidos" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="last_name"
+                   name="last_name" formControlName="last_name"/>
+
+            <label class="sr-only" for="ci">C.I</label>
+            <input placeholder="C.I" type="number" maxlength="11" class="form-control mb-2 mr-sm-2 mb-sm-0"
+                   id="ci" name="ci" formControlName="ci"/>
+
+            <input type="hidden" name="id" formControlName="id">
+
+            <label class="sr-only" for="salario_x_dia">Salario</label>
+            <input placeholder="Salario" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
+                   id="salario_x_dia" name="salario_x_dia" formControlName="salario_x_dia"/>
+
+            <select class="form-control mb-2 mr-sm-2 mb-sm-0" *ngIf="fabrica === undefined" id="fabrica_id"
+                    name="fabrica_id" formControlName="fabrica_id" class="form-control">
+                <option *ngFor="let fab of fabricas" value="{{ fab.id }}">{{ fab.nombre }}</option>
+            </select>
+            <input *ngIf="fabrica !== undefined" type="hidden" name="fabrica_id" formControlName="fabrica_id">
+
+
+            <button type="submit" class="btn btn-primary ml-2">+Trabajador</button>&nbsp;
+            <button *ngIf="editMode" (click)="cancelarEdicion()" type="button" class="btn btn-secundary">Cancelar
+            </button>
+        </form>
+    </div>
+    <div class="col-sm-12">
+        <div class="example-header">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+            <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <mat-header-cell [ngClass]="'flex-5'" *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                    <mat-cell [ngClass]="'flex-5'" *matCellDef="let row"> {{row.id}}</mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="first_name">
+                    <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> Nombre
+                    </mat-header-cell>
+                    <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.first_name}}</mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="last_name">
+                    <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> Apellidos
+                    </mat-header-cell>
+                    <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.last_name}}</mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="ci">
+                    <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> C.I
+                    </mat-header-cell>
+                    <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.ci}}</mat-cell>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="salario_x_dia">
+                    <mat-header-cell [ngClass]="'flex-5'" *matHeaderCellDef mat-sort-header> Salario
+                    </mat-header-cell>
+                    <mat-cell [ngClass]="'flex-5'" *matCellDef="let row"> {{row.salario_x_dia}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell [ngClass]="'flex-55'" *matHeaderCellDef mat-sort-header></mat-header-cell>
+                    <mat-cell [ngClass]="'flex-55'" *matCellDef="let row">
+                        <div class="btn-group">
+                            <button (click)="open(content)" class="btn btn-xs btn-info"><i class="fa fa-calendar"></i>
+                                Ver Calendario
+                            </button> &nbsp;&nbsp;
+                            <button (click)="editarTrabajador(row.id)" class="btn btn-xs btn-primary"
+                                    data-toggle="modal" data-target="#addElement"><i class="fa fa-edit"></i> Editar
+                            </button>
+                            <button (click)="deleteTrabajador(row.id)" class="btn btn-xs btn-danger btn-remove"
+                                    type="button"><i class="fa fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+
+                    </mat-cell>
+                </ng-container>
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>One fine body&hellip;</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

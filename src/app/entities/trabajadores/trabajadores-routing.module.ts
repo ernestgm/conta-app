@@ -5,7 +5,13 @@ import { TrabajadoresComponent } from './trabajadores.component';
 const routes: Routes = [
     {
         path: '',
-        component: TrabajadoresComponent
+        component: TrabajadoresComponent,
+        children: [
+            { path: '', redirectTo: 'lista', pathMatch: 'full' },
+            { path: 'lista', loadChildren: './lista/lista.module#ListaModule' },
+            { path: 'lista/:fabrica_id', loadChildren: './lista/lista.module#ListaModule' },
+            { path: 'asistencia/:fabrica_id', loadChildren: './asistencia/asistencia.module#AsistenciaModule' },
+        ]
     }
 ];
 

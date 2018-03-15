@@ -10,7 +10,6 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashboard' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'trabajadores', loadChildren: '../entities/trabajadores/trabajadores.module#TrabajadoresModule' },
-            { path: 'trabajadores/fabrica/:fabrica_id', loadChildren: '../entities/trabajadores/trabajadores.module#TrabajadoresModule' },
             { path: 'fabricas', loadChildren: '../entities/fabricas/fabricas.module#FabricasModule' },
             { path: 'nomina', loadChildren: '../entities/nomina/nomina.module#NominaModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
