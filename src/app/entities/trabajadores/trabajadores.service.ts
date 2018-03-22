@@ -4,6 +4,8 @@ import {Trabajadores} from './trabajadores';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Fabrica} from '../fabricas/fabrica';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {Horario} from './asistencia/horario';
 
 @Injectable()
 export class TrabajadoresService {
@@ -35,4 +37,20 @@ export class TrabajadoresService {
     removeTrabajador(id: Number): Observable<any> {
         return this.http.delete(this._URL + 'trabajador/' + id);
     }
+
+    getAllAsistencia(fabrica_id: Number, fecha: NgbDateStruct): Observable<Trabajadores[]> {
+        const params = new HttpParams()
+            .set('fabrica', fabrica_id.toString())
+            .set('fecha', fecha.year.toString() + '-' + fecha.month.toString() + '-' + fecha.day.toString());
+
+        return this.http
+            .get<Trabajadores[]>(this._URL + 'trabajador_asistencia', {params: params})
+            .catch(this.handleError);
+
+    }
+
+    guardarAsistencia(horarios: Horario[]): Observable<any> {
+        return this.http.post(this._URL + 'trabajador_guardarasistencia', horarios);
+    }
+
 }

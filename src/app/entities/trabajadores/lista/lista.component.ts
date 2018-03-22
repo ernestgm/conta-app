@@ -54,7 +54,6 @@ export class ListaComponent implements OnInit, OnDestroy {
         this._fabricaService.getAll().subscribe(
             resultArray => {
                 this.fabricas = resultArray;
-                console.log(this.route.parent.paramMap);
                 this.sub = this.route.params.subscribe(params => {
                     console.log(params);
                     if (params['fabrica_id'] !== undefined) {

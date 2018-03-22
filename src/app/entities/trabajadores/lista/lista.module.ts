@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {TrabajadoresService} from '../trabajadores.service';
 import {ListaComponent} from './lista.component';
 import {ListaRoutingModule} from './lista-routing.module';
+import {PageHeaderModule} from '../../../shared';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import {ListaRoutingModule} from './lista-routing.module';
         MatFormFieldModule,
         MatInputModule,
         NgbModule.forRoot(),
-        ListaRoutingModule
+        ListaRoutingModule,
+        PageHeaderModule,
     ],
     providers: [TrabajadoresService],
     declarations: [ListaComponent]

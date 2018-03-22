@@ -1,3 +1,108 @@
-<p>
-  asistencia works!
-</p>
+<a [routerLink]="['/trabajadores/lista', fabrica_id]" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i>
+    Atras</a>
+<app-page-header [heading]="'Registrar Asistencia'" [icon]="'fa-calendar'"></app-page-header>
+<div class="row">
+    <div class="col-sm-12">
+        <form class="form-inline jumbotron p-2">
+            <div class="form-group">
+                <label>Selecciona una fecha para la asistencia</label>
+                &nbsp;
+                &nbsp;
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                           name="dp" [(ngModel)]="fecha" ngbDatepicker #d="ngbDatepicker"
+                           (ngModelChange)="onDateChange($event)">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" (click)="d.toggle()" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <form class="col-sm-12" [formGroup]="horasForm" (submit)="guardarAsistencia(horasForm.value)">
+        <div class="col-sm-12">
+            <div class="example-header">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+
+            <div class="example-container mat-elevation-z8">
+
+                <mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="first_name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.first_name}}</mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="last_name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.last_name}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="horas">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Horas Trabajadas
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <div formArrayName="_horarios">
+                                <div *ngFor="let elem of list.controls; let i = index">
+                                    <select [formControl]="elem.controls.horas_trabajadas" *ngIf="elem.value.trab_id === row.id" class="form-control">
+                                        <option value="0">{{ row.id }}</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                    </select>
+                                    <input *ngIf="elem.value.trab_id === row.id" [formControl]="elem.controls.trab_id" type="hidden">
+                                </div>
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+
+                </mat-table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+        <hr>
+        <button *ngIf="trabajadores != undefined && trabajadores.length != 0" type="submit" class="btn btn-primary ml-2 pull-right">Guardar Asistencia</button>
+    </form>
+</div>

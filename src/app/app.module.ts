@@ -14,6 +14,7 @@ import { FabricasComponent } from './entities/fabricas/fabricas.component';
 import { FabricasService } from './entities/fabricas/fabricas.service';
 import { NominaComponent } from './entities/nomina/nomina.component';
 import { NominaService } from './entities/nomina/nomina.service';
+import { CalendarioComponent } from './entities/tabajadores/calendario/calendario.component';
 
 
 // AoT requires an exported function for factories
@@ -39,7 +40,8 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        CalendarioComponent
     ],
     providers: [AuthGuard,TrabajadoresService,FabricasService,NominaService],
     bootstrap: [AppComponent]
