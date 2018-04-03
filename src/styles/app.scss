@@ -5,13 +5,33 @@
 @import "rtl";
 @import "responsive";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~angular-calendar/css/angular-calendar.css';
 
-.flex-5{
+.flex-5 {
   flex: 0 0 10% !important;
 }
-.flex-15{
+
+.flex-15 {
   flex: 0 0 15% !important;
 }
-.flex-55{
+
+.flex-55 {
   flex: 0 0 55% !important;
+}
+.modal-dialog{
+  width: 90%;
+  max-width: none;
+}
+
+.full-cell {
+  background-color: #345199 !important;
+  color: #fff;
+}
+.normal-cell {
+  background-color: #369932 !important;
+  color: #fff;
+}
+.empty-cell {
+  background-color: #b43d44 !important;
+  color: #fff;
 }

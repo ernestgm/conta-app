@@ -5,7 +5,6 @@ import {TrabajadoresComponent} from './trabajadores.component';
 import {TrabajadoresService} from './trabajadores.service';
 import {PageHeaderModule} from '../../shared';
 import {TrabajadoresRoutingModule} from './trabajadores-routing.module';
-import { CalendarioComponent } from './calendario/calendario.component';
 
 @NgModule({
     imports: [
@@ -14,7 +13,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
         TrabajadoresRoutingModule,
     ],
     providers: [TrabajadoresService],
-    declarations: [TrabajadoresComponent, CalendarioComponent]
+    declarations: [TrabajadoresComponent]
 })
 
 export class TrabajadoresModule {

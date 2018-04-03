@@ -9,6 +9,8 @@ import {TrabajadoresService} from '../trabajadores.service';
 import {ListaComponent} from './lista.component';
 import {ListaRoutingModule} from './lista-routing.module';
 import {PageHeaderModule} from '../../../shared';
+import {CalendarioModule} from '../calendario/calendario.module';
+import {PageHeaderComponent} from '../../../shared/modules/page-header/page-header.component';
 
 @NgModule({
     imports: [
@@ -25,6 +27,7 @@ import {PageHeaderModule} from '../../../shared';
         NgbModule.forRoot(),
         ListaRoutingModule,
         PageHeaderModule,
+        CalendarioModule,
     ],
     providers: [TrabajadoresService],
     declarations: [ListaComponent]

@@ -53,4 +53,18 @@ export class TrabajadoresService {
         return this.http.post(this._URL + 'trabajador_guardarasistencia', horarios);
     }
 
+    createAsistencia(horario: Horario): Observable<any> {
+        return this.http.post(this._URL + 'horario', horario);
+    }
+
+    updateAsistencia(horario: any): Observable<any> {
+        return this.http.put(this._URL + 'horario/' + horario.id, horario);
+    }
+
+    getCalendarByTrabajador(id: Number): Observable<any> {
+        return this.http
+            .get<any>(this._URL + 'trabajador_calendar/' + id)
+            .catch(this.handleError);
+    }
+
 }

@@ -1,13 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FullCalendarModule} from 'ng-fullcalendar';
+import { CalendarModule } from 'angular-calendar';
+import {CalendarioComponent} from './calendario.component';
+import {CalendarNextViewDirective} from 'angular-calendar/modules/common/calendar-next-view.directive';
 
 @NgModule({
     imports: [
         CommonModule,
-        FullCalendarModule
+        CalendarModule.forRoot(),
     ],
-    declarations: []
+    declarations: [CalendarioComponent],
+    exports: [CalendarioComponent]
 })
 export class CalendarioModule {
 }

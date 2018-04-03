@@ -1,3 +1,29 @@
-<p>
-  calendario works!
-</p>
+<div class="row text-center">
+    <div class="col-md-4">
+        <div class="btn-group">
+            <button class="btn btn-primary" mwlCalendarPreviousView [(viewDate)]="viewDate" [view]="view"> Anterior </button>
+            <button class="btn btn-secundary" mwlCalendarToday [(viewDate)]="viewDate"> Hoy </button>
+            <button class="btn btn-primary" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view"> Siguiente </button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3>{{ viewDate | date :'MMM yyyy' }}</h3>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+    <div class="cal-cell-top">
+        <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+    </div>
+    <small *ngIf="day.events.length > 0" style="margin: 5px">{{ day.events[0].title }} Horas</small>
+</ng-template>
+<div [ngSwitch]="view">
+    <mwl-calendar-month-view
+            *ngSwitchCase="'month'"
+            [viewDate]="viewDate"
+            [events]="events"
+            (dayClicked)="changeDate( $event )"
+            (beforeViewRender)="beforeMonthViewRender($event)"
+            [cellTemplate]="customCellTemplate">
+    </mwl-calendar-month-view>
+</div>

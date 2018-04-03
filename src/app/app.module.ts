@@ -1,20 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthGuard } from './shared';
-import { TrabajadoresService } from './entities/trabajadores/trabajadores.service';
-import { FabricasComponent } from './entities/fabricas/fabricas.component';
-import { FabricasService } from './entities/fabricas/fabricas.service';
-import { NominaComponent } from './entities/nomina/nomina.component';
-import { NominaService } from './entities/nomina/nomina.service';
-import { CalendarioComponent } from './entities/tabajadores/calendario/calendario.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {AuthGuard} from './shared';
+import {TrabajadoresService} from './entities/trabajadores/trabajadores.service';
+import {FabricasService} from './entities/fabricas/fabricas.service';
+import {NominaService} from './entities/nomina/nomina.service';
 
 
 // AoT requires an exported function for factories
@@ -41,9 +38,9 @@ export function createTranslateLoader(http: HttpClient) {
     ],
     declarations: [
         AppComponent,
-        CalendarioComponent
     ],
-    providers: [AuthGuard,TrabajadoresService,FabricasService,NominaService],
+    providers: [AuthGuard, TrabajadoresService, FabricasService, NominaService],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
