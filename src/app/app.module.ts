@@ -39,7 +39,12 @@ export function createTranslateLoader(http: HttpClient) {
     declarations: [
         AppComponent,
     ],
-    providers: [AuthGuard, TrabajadoresService, FabricasService, NominaService],
+    providers: [
+        AuthGuard,
+        TrabajadoresService,
+        FabricasService,
+        NominaService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

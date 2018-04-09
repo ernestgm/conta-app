@@ -4,6 +4,7 @@ import { NominaComponent } from './nomina.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageHeaderModule } from '../../shared/index';
 import { NominaRoutingModule } from './nomina-routing.module';
+import { GenerarNominaComponent } from './generar-nomina/generar-nomina.component';
 
 @NgModule({
   imports: [

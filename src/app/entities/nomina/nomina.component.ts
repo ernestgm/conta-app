@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../../router.animations';
+import {Component, OnInit} from '@angular/core';
+import {routerTransition} from '../../router.animations';
 
 @Component({
-  selector: 'app-nomina',
-  templateUrl: './nomina.component.html',
-  styleUrls: ['./nomina.component.scss'],
-  animations: [routerTransition()]
+    selector: 'app-nomina',
+    templateUrl: './nomina.component.html',
+    styleUrls: ['./nomina.component.scss'],
+    animations: [routerTransition()]
 })
 export class NominaComponent implements OnInit {
 
-  constructor() { }
+    fabrica_id: Number = -1;
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

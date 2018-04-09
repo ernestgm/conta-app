@@ -1,3 +1,4 @@
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
 <div [@routerTransition]>
     <app-page-header [heading]="'Fabricas'" [icon]="'fa-building'"></app-page-header>
 
@@ -48,7 +49,7 @@
                     <ng-container matColumnDef="actions">
                         <mat-header-cell [ngClass]="'flex-55'" *matHeaderCellDef mat-sort-header></mat-header-cell>
                         <mat-cell [ngClass]="'flex-55'" *matCellDef="let row">
-                            <a href="" class="btn btn-xs btn-info"><i class="fa fa-money"></i> Listar Nominas</a> &nbsp;
+                            <a [routerLink]="['/nomina/lista', row.id]" class="btn btn-xs btn-info"><i class="fa fa-money"></i> Listar Nominas</a> &nbsp;
 
                             <a [routerLink]="['/trabajadores/lista', row.id]" class="btn btn-xs btn-success"><i class="fa fa-users"></i> Lista Trabajadores</a>
                             &nbsp; &nbsp;

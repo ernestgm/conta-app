@@ -16,19 +16,6 @@ export class DashboardComponent implements OnInit {
     public cantidad_fabricas: Number = 0;
 
     constructor(private _trabajadoresService: TrabajadoresService, private _fabricaService: FabricasService) {
-        this._fabricaService.getAll().subscribe(
-            resultArray => {
-                this.cantidad_fabricas = resultArray.length;
-            },
-            error => console.log('Error :: ' + error)
-        );
-
-        this._trabajadoresService.getAll(-1).subscribe(
-            resultArray => {
-                this.cantidad_trabajadores = resultArray.length;
-            },
-            error => console.log('Error :: ' + error)
-        );
 
         this.sliders.push(
             {
@@ -71,6 +58,19 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this._fabricaService.getAll().subscribe(
+            resultArray => {
+                this.cantidad_fabricas = resultArray.length;
+            },
+            error => console.log('Error :: ' + error)
+        );
+
+        this._trabajadoresService.getAll(-1).subscribe(
+            resultArray => {
+                this.cantidad_trabajadores = resultArray.length;
+            },
+            error => console.log('Error :: ' + error)
+        );
     }
 
     public closeAlert(alert: any) {

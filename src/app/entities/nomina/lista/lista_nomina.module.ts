@@ -1,20 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AsistenciaComponent} from './asistencia.component';
-import {AsistenciaRoutingModule} from './asistencia-routing.module';
-import {TrabajadoresService} from '../trabajadores.service';
-import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {PageHeaderModule} from '../../../shared';
 import {RouterModule} from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
+import {ListaNominaComponent} from './lista_nomina.component';
+import {ListaNominaRoutingModule} from './lista_nomina-routing.module';
+import {PageHeaderModule} from '../../../shared';
+import {NominaService} from '../nomina.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 @NgModule({
     imports: [
         CommonModule,
-        AsistenciaRoutingModule,
+        RouterModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
@@ -24,12 +24,12 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
         MatFormFieldModule,
         MatInputModule,
         NgbModule.forRoot(),
+        ListaNominaRoutingModule,
         PageHeaderModule,
-        RouterModule,
         LoadingBarHttpClientModule
     ],
-    providers: [TrabajadoresService],
-    declarations: [AsistenciaComponent]
+    providers: [NominaService],
+    declarations: [ListaNominaComponent]
 })
-export class AsistenciaModule {
+export class ListaNominaModule {
 }

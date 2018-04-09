@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FabricasService} from './fabricas.service';
 import {MatInputModule, MatFormFieldModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import {RouterModule} from '@angular/router';
         MatSortModule,
         MatFormFieldModule,
         MatInputModule,
+        LoadingBarHttpClientModule,
         RouterModule
     ],
     providers: [FabricasService],

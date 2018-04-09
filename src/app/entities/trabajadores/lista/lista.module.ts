@@ -11,6 +11,9 @@ import {ListaRoutingModule} from './lista-routing.module';
 import {PageHeaderModule} from '../../../shared';
 import {CalendarioModule} from '../calendario/calendario.module';
 import {PageHeaderComponent} from '../../../shared/modules/page-header/page-header.component';
+import {NgProgressModule} from '@ngx-progressbar/core';
+import {NgProgressHttpModule} from '@ngx-progressbar/http';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 @NgModule({
     imports: [
@@ -28,6 +31,9 @@ import {PageHeaderComponent} from '../../../shared/modules/page-header/page-head
         ListaRoutingModule,
         PageHeaderModule,
         CalendarioModule,
+        NgProgressModule.forRoot(),
+        NgProgressHttpModule,
+        LoadingBarHttpClientModule
     ],
     providers: [TrabajadoresService],
     declarations: [ListaComponent]

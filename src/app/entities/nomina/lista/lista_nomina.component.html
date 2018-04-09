@@ -1,0 +1,70 @@
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+<app-page-header [heading]="'Lista de Nominas'" [icon]="'fa-file-excel-o'"></app-page-header>
+<h3 class="pull-left" *ngIf="fabrica !== undefined">Fabrica: {{ fabrica.nombre }}</h3>
+<a [routerLink]="['/nomina/generar', fabrica_id]" *ngIf="fabrica !== undefined" class="btn btn-info pull-right"><i class="fa fa-file-excel-o"></i> Generar Nomina</a>&nbsp;
+<hr class="mt-4">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="example-header">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+            <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <mat-header-cell [ngClass]="'flex-5'" *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                    <mat-cell [ngClass]="'flex-5'" *matCellDef="let row"> {{row.id}}</mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="nombre">
+                    <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> Nombre
+                    </mat-header-cell>
+                    <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.nombre}}</mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="fecha_inicio">
+                    <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> Fecha Inicio
+                    </mat-header-cell>
+                    <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.fecha_inicio}}</mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="fecha_fin">
+                    <mat-header-cell [ngClass]="'flex-15'" *matHeaderCellDef mat-sort-header> Fecha Fin
+                    </mat-header-cell>
+                    <mat-cell [ngClass]="'flex-15'" *matCellDef="let row"> {{row.fecha_fin}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell [ngClass]="'flex-55'" *matHeaderCellDef mat-sort-header></mat-header-cell>
+                    <mat-cell [ngClass]="'flex-55'" *matCellDef="let row">
+
+                            <button (click)="openCalendar(content, row.id)" class="btn btn-xs btn-info"><i class="fa fa-calendar"></i>
+                                Ver Nomina
+                            </button> &nbsp;&nbsp;
+                            <button (click)="editarTrabajador(row.id)" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> Imprimir
+                            </button>
+                            <button (click)="deleteTrabajador(row.id)" class="btn btn-xs btn-danger btn-remove"
+                                    type="button"><i class="fa fa-trash"></i> Eliminar
+                            </button>
+
+                    </mat-cell>
+                </ng-container>
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
+</div>

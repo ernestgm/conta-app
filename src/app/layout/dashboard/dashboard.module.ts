@@ -10,6 +10,8 @@ import {
     ChatComponent
 } from './components';
 import { StatModule } from '../../shared';
+import {HttpClientModule} from '@angular/common/http';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import { StatModule } from '../../shared';
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
         DashboardRoutingModule,
-        StatModule
+        StatModule,
+        HttpClientModule,
+        LoadingBarHttpClientModule
     ],
     declarations: [
         DashboardComponent,
