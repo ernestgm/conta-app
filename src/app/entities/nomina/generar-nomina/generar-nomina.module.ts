@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {GenerarNominaComponent} from './generar-nomina.component';
 import {GenerarNominaRoutingModule} from './generar-nomina-routing.module';
+import {DatepickerRangeComponent} from '../../../layout/bs-component/components';
 
 @NgModule({
     imports: [
@@ -29,7 +30,9 @@ import {GenerarNominaRoutingModule} from './generar-nomina-routing.module';
         LoadingBarHttpClientModule
     ],
     providers: [NominaService],
-    declarations: [GenerarNominaComponent]
+    declarations: [
+        GenerarNominaComponent,
+    ]
 })
 export class GenerarNominaModule {
 }

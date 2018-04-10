@@ -1,7 +1,13 @@
 <ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
 <a [routerLink]="['/nomina/lista', fabrica_id]" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i>
-  Atras</a>
+    Atras</a>
 <app-page-header [heading]="'Generar Nomina'" [icon]="'fa-file-excel-o'"></app-page-header>
 <div class="row">
-
+    <div class="col-sm-12">
+        <form class="form-inline jumbotron p-2">
+            <div class="form-group">
+                <label>Selecciona una fecha para la asistencia</label>
+            </div>
+        </form>
+    </div>
 </div>

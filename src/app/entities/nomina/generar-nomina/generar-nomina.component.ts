@@ -3,6 +3,9 @@ import {ActivatedRoute} from '@angular/router';
 import {FabricasService} from '../../fabricas/fabricas.service';
 import {NominaComponent} from '../nomina.component';
 import {Fabrica} from '../../fabricas/fabrica';
+import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+
+const now = new Date();
 
 @Component({
     selector: 'app-generar-nomina',
@@ -14,12 +17,13 @@ export class GenerarNominaComponent implements OnInit {
     fabricas: Fabrica[];
     fabrica: Fabrica;
     private sub: any;
+    fecha: NgbDateStruct;
 
-    constructor(
-        private _fabricaService: FabricasService,
-        private route: ActivatedRoute,
-        private _nominaComponent: NominaComponent
-    ) {
+    constructor(private _fabricaService: FabricasService,
+                private route: ActivatedRoute,
+                private _nominaComponent: NominaComponent,
+                calendar: NgbCalendar) {
+
     }
 
     ngOnInit() {
@@ -37,5 +41,4 @@ export class GenerarNominaComponent implements OnInit {
             error => console.log('Error :: ' + error)
         );
     }
-
 }

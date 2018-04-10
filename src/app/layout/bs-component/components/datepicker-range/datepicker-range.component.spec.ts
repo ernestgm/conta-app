@@ -2,11 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { DatePickerComponent } from './date-picker.component';
+import {DatepickerRangeComponent} from './datepicker-range.component';
 
 describe('DatePickerComponent', () => {
-  let component: DatePickerComponent;
-  let fixture: ComponentFixture<DatePickerComponent>;
+  let component: DatepickerRangeComponent;
+  let fixture: ComponentFixture<DatepickerRangeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,13 +14,13 @@ describe('DatePickerComponent', () => {
         FormsModule,
         NgbModule.forRoot()
       ],
-      declarations: [ DatePickerComponent ]
+      declarations: [ DatepickerRangeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatePickerComponent);
+    fixture = TestBed.createComponent(DatepickerRangeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

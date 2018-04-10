@@ -1,8 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Trabajadores} from '../trabajadores';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {FabricasService} from '../../fabricas/fabricas.service';
-import {TrabajadoresComponent} from '../trabajadores.component';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {TrabajadoresService} from '../trabajadores.service';
@@ -55,6 +53,8 @@ export class AsistenciaComponent implements OnInit, OnDestroy {
                 this.trabajadores = resultArray;
 
                 this.list = new FormArray([]);
+                //Poner la fecha como string mas corto
+                // `${ this.fecha.year }-${this.fecha.month}-${this.fecha.day}`
                 for (let trabajador of this.trabajadores) {
                     this.list.setControl(trabajador.id, this._formBuilder.group({
                         trab_id: [trabajador.id],
